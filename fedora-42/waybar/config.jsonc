@@ -1,0 +1,178 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "waybar",
+    "position": "top",
+    "name": "main",
+    // "height": 10,
+    // "width": 1280
+    "spacing": 0,
+    "reload_style_on_change": true,
+    "modules-left": [
+        "niri/workspaces",
+        "custom/sep1",
+        "sway/mode",
+        "sway/scratchpad",
+        "custom/updates"
+    ],
+    "modules-center": [
+        "custom/sep2",
+        "niri/window",
+        "custom/sep3"
+    ],
+    "modules-right": [
+        "idle_inhibitor",
+        "custom/sep4",
+        "mpris",
+        "pulseaudio",
+        "custom/sep5",
+        "custom/sep6",
+        "network",
+        //"custom/sep7",
+        "custom/sep8",
+        "cpu",
+        "memory",
+        "custom/sep9",
+        //"temperature",
+        //"keyboard-state",
+        //"sway/language",
+        "custom/sep10",
+        "clock",
+        //"custom/sep11",
+        "custom/sep12",
+        "group/traym"
+    ],
+    // Modules configuration
+    "custom/updates": {
+        "exec": "bash $HOME/.config/waybar/scripts/checkupdates.sh", // <--- path to script
+        "on-click-right": "bash $HOME/.config/waybar/scripts/checkupdates.sh", // refresh on right click
+        "on-click-middle": "swaymsg exec '$term -e sudo dnf update --refresh'", // update on middle click    
+        "interval": 900, // refresh every 15 minutes
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "has-updates": "󰚰", // icon when updates needed
+            "updated": "" // icon when all packages updated
+        }
+    },
+    "niri/window": {
+        "format": "{app_id}",
+        "tooltip-format": "{title}"
+    },
+    "custom/sepm1" : {
+        "exec-if":"waybar/mpris",
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sepm2" : {
+        "exec-if":"waybar/mpris",
+        "format":"",
+        "tooltip":false
+    },
+    "mpris": {
+        "ignored-players" : ["firefox"],
+        "format" : "{status_icon}  {title} - {artist}",
+        "tooltip-format" : "{album} : {player}",
+        "status-icons" : {
+            "playing":"",
+            "paused":"",
+            "stopped":""
+        }
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "group/traym": {
+        "orientation": "horizontal",
+        "drawer": {},
+        "modules": ["custom/trayicon", "tray"]
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 4
+    },
+    "custom/trayicon": {
+        "format": " 󱊖  ",
+        "tooltip": false,
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "  /",
+        "tooltip": true
+    },
+    "memory": {
+        "format": " ",
+        "format-alt": "{}%  ",
+        "tooltip": true
+    },
+     "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "({signalStrength}%) 󰖩 ",
+        "format-ethernet": " ",
+        "tooltip-format": "{ifname} via {gwaddr} 󰛳",
+        "format-linked": "󰱓 ",
+        "format-disconnected": " "
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}%",
+        "on-click": "pavucontrol"
+    },
+    "custom/sep1" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep2" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep3" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep4" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep5" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep6" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep7" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep8" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep9" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep10" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep11" : {
+        "format":"",
+        "tooltip":false
+    },
+    "custom/sep12" : {
+        "format":"",
+        "tooltip":false
+    }
+}
