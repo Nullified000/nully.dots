@@ -1,0 +1,454 @@
+input {
+    keyboard {
+        /- xkb {}
+        track-layout "global"
+        numlock
+    }
+    touchpad {
+        off
+    }
+    mouse {
+        // off
+        // natural-scroll
+        accel-profile "flat"
+        scroll-method "no-scroll"
+    }
+    trackpoint {
+        off
+    }
+    // disable-power-key-handling
+    // warp-mouse-to-focus
+    focus-follows-mouse max-scroll-amount="100%"
+}
+output "DVI-I-l" {
+    // Uncomment this line to disable this output.
+    // off
+    // Mode "1920x1080@60.000"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+}
+
+// Layout & Decorations
+layout {
+    gaps 5
+    center-focused-column "on-overflow"
+    preset-column-widths {
+        proportion 0.2
+        proportion 0.5
+        proportion 1.0
+    }
+    preset-window-heights {
+        proportion 0.2
+        proportion 0.5
+        proportion 1.0
+    }
+    default-column-width {}
+    default-column-display "normal"
+    focus-ring {
+        off
+        width 2
+        active-color "#ff005a"
+        inactive-color "#5646a3"
+        active-gradient from="#ff005a" to="#a500ff" angle=135 relative-to="workspace-view"
+        inactive-gradient from="#5646a3" to="#9746a3" angle=135 relative-to="workspace-view"
+    }
+    border {
+        // off
+        width 2
+        active-color "#ff005a"
+        inactive-color "#5646a3"
+        urgent-color "#ff0030"
+        active-gradient from="#ff005a" to="#a500ff" angle=135 relative-to="workspace-view"
+        inactive-gradient from="#5646a3" to="#9746a3" angle=135 relative-to="workspace-view"
+        urgent-gradient from="#ff0030" to="#ff005a" angle=135 relative-to="workspace-view"
+    }
+    /- shadow {
+        // on
+        // draw-behind-window true
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+    tab-indicator {
+        hide-when-single-tab
+        width 8
+        gap 2
+        length total-proportion=1.0
+        position "top"
+        place-within-column
+        active-gradient from="#a500ff" to="#ff005a" angle=135 relative-to="workspace-view"
+        inactive-gradient from="#9746a3" to="#5646a3" angle=135 relative-to="workspace-view"
+        urgent-gradient from="#ff005a" to="#ff0030" angle=135 relative-to="workspace-view"
+    }
+    insert-hint {
+        // off
+        color "#ff0030"
+        gradient from="#ff0030" to="#ff005a" angle=135 relative-to="workspace-view"
+    }
+    struts {
+        left 10
+        right 10
+        top 10
+        bottom 10
+    }
+}
+
+// Startup
+// spawn-at-startup "waybar"
+spawn-sh-at-startup "glances -w -u glances"
+spawn-at-startup "Homepage"
+
+spawn-sh-at-startup "flatpak run im.riot.Riot"
+spawn-at-startup "proton-mail"
+spawn-at-startup "keepassxc"
+spawn-at-startup "freeter"
+spawn-at-startup "codium"
+spawn-at-startup "librewolf"
+spawn-at-startup "vesktop"
+// spawn-at-startup "steam"
+
+spawn-at-startup "backlight-workaround"
+
+// Workspaces & Windows
+workspace "Root"
+workspace "Web"
+workspace "Chats"
+workspace "Games"
+workspace "Media"
+workspace "Work"
+
+// workspace binds
+window-rule {
+    match app-id="superProductivity"
+    match app-id="com.usebottles.bottles"
+    match app-id="com.github.tchx84.Flatseal"
+    match app-id="org.gnome.baobab"
+    match app-id="Proton Mail"
+    match title="dnfdragora$"
+    match app-id="Docker Desktop"
+
+    open-on-workspace "Root"
+}
+window-rule {
+    match app-id="librewolf"
+    match app-id="Tor Browser"
+    match app-id="org.qbittorrent.qBittorrent"
+    match app-id="org.keepassxc.KeePassXC"
+
+    open-on-workspace "Web"
+}
+window-rule {
+    match app-id="vesktop"
+    match app-id="im.riot.Riot"
+
+    open-on-workspace "Chats"
+}
+window-rule {
+    match app-id="steam"
+    match app-id="org.prismlauncher.PrismLauncher"
+
+    exclude title=r#"^notificationtoasts_\d+_desktop$"#
+    
+    open-on-workspace "Games"
+}
+window-rule {
+    match app-id="com.github.th_ch.youtube_music"
+    match app-id="GLava"
+
+    open-on-workspace "Media"
+}
+window-rule {
+    match app-id="^libreoffice"
+    match app-id="gimp"
+    match app-id="robloxstudiobeta.exe"
+    match app-id="manuskript"
+    match app-id="krita"
+    match app-id="blender"
+
+    open-on-workspace "Work"
+}
+
+// specific window rules
+window-rule {
+    match app-id="^libreoffice"
+    match app-id="krita"
+    match app-id="gimp"
+    open-maximized true
+}
+window-rule {
+    match app-id="VSCodium"
+    match app-id="Docker Desktop"
+    match app-id="Proton Mail"
+    default-column-display "tabbed"
+}
+window-rule {
+    match app-id="VSCodium"
+    match app-id="librewolf"
+    match app-id="org.qbittorrent.qBittorrent"
+    match app-id="robloxstudiobeta.exe"
+    match app-id="manuskript"
+    match app-id="blender"
+    default-column-width { proportion 0.9; }
+}
+window-rule {
+    match app-id="Docker Desktop"
+    match app-id="Proton Mail"
+    match app-id="vesktop"
+    match app-id="im.riot.Riot"
+    match app-id="freeter"
+    default-column-width { proportion 0.8; }
+}
+window-rule {
+    match app-id="com.usebottles.bottles"
+    match app-id="org.gnome.baobab"
+    match title="dnfdragora$"
+    default-column-width { proportion 0.4; }
+}
+window-rule {
+    match app-id="protonvpn-app"
+    default-column-width { proportion 0.3; }
+}
+window-rule {
+    match app-id="com.github.th_ch.youtube_music"
+    default-column-width { proportion 0.45; }
+}
+window-rule {
+    match app-id="org.clementine_player.Clementine"
+    default-window-height { proportion 0.1; }
+}
+window-rule {
+    match app-id="GLava"
+    default-column-width { proportion 0.55; }
+}
+window-rule {
+    match app-id="org.torproject.torbrowser-launcher"
+    match app-id="org.gnome.font-viewer"
+    match app-id="qt6ct"
+    match app-id="xarchiver"
+    open-floating true
+}
+window-rule {
+    match app-id="Xdg-desktop-portal-gtk"
+    border {
+        off
+    }
+}
+/-layer-rule {
+    match namespace="^launcher$"
+    baba-is-float true
+}
+/-layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+// fix rules
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    open-floating true
+    default-floating-position x=100 y=50 relative-to="bottom-right"
+}
+window-rule {
+    match title="^Picture-in-Picture$"
+    open-floating true
+}
+layer-rule {
+    match namespace="^notifications$"
+    block-out-from "screencast"
+}
+window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id="Proton Mail"
+    block-out-from "screen-capture"
+    // block-out-from "screencast"
+}
+window-rule {
+    match app-id="^gimp" title="^GIMP Startup$"
+    open-focused false
+}
+window-rule {
+    match app-id=r#"^com\.obsproject\.Studio$"#
+    min-width 876
+}
+window-rule {
+    clip-to-geometry true
+}
+
+// Other
+hotkey-overlay {
+    // skip-at-startup
+}
+prefer-no-csd
+screenshot-path null
+
+// Animations
+animations {
+    // off
+    slowdown 1.0
+    workspace-switch {
+        duration-ms 0
+        curve "ease-out-cubic"
+    }
+    window-open {
+        duration-ms 250
+        curve "ease-out-cubic"
+    }
+    window-close {
+        duration-ms 250
+        curve "ease-out-cubic"
+    }
+    horizontal-view-movement {
+        duration-ms 150
+        curve "ease-out-cubic"
+    }
+    window-movement {
+        duration-ms 300
+        curve "ease-out-expo"
+    }
+    window-resize {
+        duration-ms 300
+        curve "ease-out-expo"
+    }
+    config-notification-open-close {
+        duration-ms 200
+        curve "ease-out-cubic"
+    }
+    exit-confirmation-open-close {
+        duration-ms 200
+        curve "ease-out-cubic"
+    }
+    screenshot-ui-open {
+        duration-ms 300
+        curve "ease-out-cubic"
+    }
+    overview-open-close {
+        duration-ms 300
+        curve "ease-out-cubic"
+    }
+}
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "kitty" "--hold" "cmatrix" "-sb" "-C" "magenta"; }
+    Mod+R hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+
+    // Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+    // XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    // XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    Mod+O repeat=false { toggle-overview; }
+
+    Mod+Shift+Q repeat=false { close-window; }
+
+    Mod+Left  { focus-column-left; }
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+    Mod+Right { focus-column-right; }
+
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Down  { move-window-down; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Right { move-column-right; }
+
+    // Super+J     { focus-window-or-workspace-down; }
+    // Super+K     { focus-window-or-workspace-up; }
+    // Super+Ctrl+J     { move-window-down-or-to-workspace-down; }
+    // Super+Ctrl+K     { move-window-up-or-to-workspace-up; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
+
+    Mod+Ctrl+Left  { focus-monitor-left; }
+    Mod+Ctrl+Down  { focus-monitor-down; }
+    Mod+Ctrl+Up    { focus-monitor-up; }
+    Mod+Ctrl+Right { focus-monitor-right; }
+
+    Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
+    Mod+Shift+Ctrl+Down  { move-window-to-monitor-down; }
+    Mod+Shift+Ctrl+Up    { move-window-to-monitor-up; }
+    Mod+Shift+Ctrl+Right { move-window-to-monitor-right; }
+
+    // Super+Shift+Ctrl+Left  { move-window-to-monitor-left; }
+    // Super+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
+
+    Mod+U              { focus-workspace-down; }
+    Mod+I              { focus-workspace-up; }
+    Mod+Shift+U         { move-window-to-workspace-down; }
+    Mod+Shift+I         { move-window-to-workspace-up; }
+    Mod+Ctrl+U         { move-workspace-down; }
+    Mod+Ctrl+I         { move-workspace-up; }
+
+    // Super+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
+    // Super+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
+
+    Mod+1 { focus-workspace "Root"; }
+    Mod+2 { focus-workspace "Web"; }
+    Mod+3 { focus-workspace "Chats"; }
+    Super+Alt+1 { focus-workspace "Games"; }
+    Super+Alt+2 { focus-workspace "Media"; }
+    Super+Alt+3 { focus-workspace "Work"; }
+    Mod+Shift+1 { move-window-to-workspace "Root"; }
+    Mod+Shift+2 { move-window-to-workspace "Web"; }
+    Mod+Shift+3 { move-window-to-workspace "Chats"; }
+    Super+Alt+Shift+1 { move-window-to-workspace "Games"; }
+    Super+Alt+Shift+2 { move-window-to-workspace "Media"; }
+    Super+Alt+Shift+3 { move-window-to-workspace "Work"; }
+
+    // Alternatively, there are commands to move just a single window:
+    // Super+Ctrl+1 { move-window-to-workspace 1; }
+    Mod+D { focus-workspace-previous; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    Mod+W { switch-preset-column-width; }
+    // Super+R { switch-preset-column-width-back; }
+    Mod+Shift+W { switch-preset-window-height; }
+    Mod+Ctrl+W { reset-window-height; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+
+    Mod+Ctrl+F { expand-column-to-available-width; }
+
+    Mod+C { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+Shift+Space { toggle-window-floating; }
+    Mod+Space { switch-focus-between-floating-and-tiling; }
+    Mod+T { toggle-column-tabbed-display; }
+
+    // Super+Space       { switch-layout "next"; }
+    // Super+Shift+Space { switch-layout "prev"; }
+
+    Print { screenshot-screen write-to-disk=false; }
+    Ctrl+Print { screenshot; }
+    Alt+Print { screenshot-window write-to-disk=false; }
+
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    Mod+Shift+E { quit; }
+    Mod+Shift+P { power-off-monitors; }
+
+    Mod+G { spawn-sh "glava"; }
+    //Mod+Shift+L { spawn-sh "python /home/null/ledToggler.py /dev/input/event2 scrolllock scrolllock 1 1"; }
+}
