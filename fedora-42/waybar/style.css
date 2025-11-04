@@ -1,0 +1,150 @@
+
+@define-color   main    #a500ff;
+@define-color   accent  #5646a3;
+@define-color   warning #ff005a;
+
+@define-color   active  #ffffff;
+@define-color   active-alt  #000000;
+@define-color   inactive    #6e6e6e;
+
+@define-color   workspaces  #420f69;
+@define-color   window  #82458f;
+@define-color   media   #3eff88;
+@define-color   network #55adff;
+@define-color   tray    #3d0d8a;
+@define-color   performance #9b2254;
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: AgaveNerdFont, SymbolsNerdFont;
+    font-size: 14px;
+    min-height: 0;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0);
+    /* color: #3d0d8a; */
+}
+button:hover {
+    background: inherit;
+    box-shadow: inherit;
+    border: inherit;
+    text-shadow: inherit;
+    transition: none;
+}
+
+#workspaces button {
+    background: @workspaces;
+    color: @inactive;
+    transition: color 300ms;
+}
+#workspaces button.focused {
+    color: @active;
+    transition: color 300ms;
+}
+#workspaces button.urgent {
+    color: @warning;
+    transition: color 200ms;
+}
+#custom-sep1 {
+    font-size: 24;
+    color: @workspaces;
+}
+
+#custom-updates {
+    font-size: 20;
+    color: @active;
+    padding-right: 6px;
+    padding-left: 6px;
+}
+
+#custom-sep2 {
+    font-size: 24;
+    color: @window;
+}
+#window {
+    background-color: @window;
+    color: @active;
+    padding: 4px;
+}
+#custom-sep3 {
+    font-size: 24;
+    color: @window;
+}
+
+#custom-sep4 {
+    font-size: 24;
+    color: @media;
+}
+#mpris {
+    background: @media;
+    color: @active-alt;
+    font-size: 10px;
+    padding-top: 0px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+#pulseaudio {
+    background: @media;
+    color: @active-alt;
+    padding: 4px;
+}
+#custom-sep5 {
+    font-size: 24;
+    color: @media;
+}
+
+#custom-sep6 {
+    font-size: 24;
+    color: @network;
+}
+#network {
+    color: @active-alt;
+    background-color: @network;
+    padding: 4px;
+}
+#custom-sep7 {
+    font-size: 24;
+    color: @network;
+}
+
+#custom-sep8 {
+    font-size: 24;
+    color: @performance;
+    background-color: @network;
+}
+#cpu, #memory {
+    color: @active;
+    background-color: @performance;
+    padding: 4px;
+}
+#custom-sep9 {
+    font-size: 24;
+    color: @performance;
+}
+
+#custom-sep10 {
+    font-size: 24;
+    color: @accent;
+}
+#clock, #date {
+    color: @active;
+    background-color: @accent;
+    padding: 4px;
+}
+#custom-sep11 {
+    font-size: 24;
+    color: @accent;
+}
+
+#custom-sep12 {
+    font-size: 24;
+    color: @tray;
+    background-color: @accent;
+}
+#traym {
+    background-color: @tray;
+    color: @active;
+    padding: 4px;
+}
