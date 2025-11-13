@@ -2,14 +2,17 @@
 REL="$(rpm -E %fedora)"
 VER="1a"
 echo "thanks to sanjayankur31 for the script base"
-echo "version $VER"
+echo "Nully Fedora43 Install Script Version $VER"
 
 setup_repos() {
     sudo dnf install dnf5-plugins
-    # taskjuggler
-    sudo dnf copr enable ankursinha/rubygem-taskjuggler
-    # NeuroFedora
-    sudo dnf copr enable @neurofedora/neurofedora-extra
+    # XPadNeo
+    sudo dnf copr enable atim/xpadneo
+    # PrismLauncher
+    sudo dnf copr enable g3tchoo/prismlauncher
+
+    # Librewolf
+    curl -fsSL https://repo.librewolf.net/librewolf.repo | sudo tee /etc/yum.repos.d/librewolf.repo
 
     # RPMFusion
     sudo dnf install \
@@ -38,15 +41,17 @@ update_groups() {
 
 install_basic() {
     # Basics
-    sudo dnf install sway kitty krusader glances mako
+    sudo dnf install sway krusader glances mako pavucontrol
     --setopt=strict=0
     # parcellite
 }
 install_necessities() {
-    # Basics
+    # Necessities
     sudo dnf install \
-        keepassxc btop kate ark \
-        kactivitymanagerd ad \
+        keepassxc btop kate ark kitty \
+        kactivitymanagerd librewolf krita gimp \
+        obs-studio torbrowser-launcher dnfdragora \
+        gnome-font-viewer \
 
     --setopt=strict=0
     # parcellite
@@ -143,14 +148,15 @@ do
             ;;
         n)
             setup_repos
-            install_nvidia
+            install_other
             exit 0
             ;;
         a)
             setup_repos
             update_groups
             install_basics
-            install_texlive_packages
+            install_necessities
+            install_other
             install_flatpaks
             enable_services
             exit 0
