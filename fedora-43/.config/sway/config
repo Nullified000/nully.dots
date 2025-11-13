@@ -1,0 +1,38 @@
+# Variables
+set $mod Mod4
+
+set $left Left
+set $down Down
+set $up Up
+set $right Right
+
+set $term kitty
+set $menu fuzzel run
+
+output DP-1 bg /home/nully/wallpaper fill
+output HDMI-A-1 bg /home/nully/wallpaper-alt fill
+
+output DP-1 resolution 1920x1080@144hz position 0,0
+output HDMI-A-1 resolution 1366x768@59.790hz position 1920,312
+
+# Idle configuration
+
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+include ./inputs
+include ./rules
+include ./binds
+include ./visual
+
+exec waybar
+exec lxpolkit
+exec nm-applet
+
+include /etc/sway/config.d/*

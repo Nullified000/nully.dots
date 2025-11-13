@@ -1,0 +1,15 @@
+default_border pixel 2
+default_floating_border pixel 1
+
+titlebar_border_thickness 1
+titlebar_padding 2 2
+font pango:ProggyCleanNerdFontMono Condensed 12
+
+gaps inner 6
+gaps outer 14
+
+client.focused #3c95ff #3d6ca4 #ffffff
+client.focused_inactive #527eb2 #416288 #787878
+client.focused_tab_title #3c95ff #3d6ca4 #ffffff
+client.unfocused #527eb2 #3e5773 #787878
+client.urgent #634ec1 #584b93 #bbe7ff

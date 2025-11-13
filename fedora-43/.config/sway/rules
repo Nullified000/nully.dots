@@ -1,0 +1,45 @@
+workspace 1 output DP-1
+workspace 2 output DP-1
+workspace 3 output DP-1
+workspace 4 output DP-1
+
+workspace 5 output HDMI-A-1
+workspace 6 output HDMI-A-1
+workspace 7 output HDMI-A-1
+workspace 8 output HDMI-A-1
+
+focus_on_window_activation urgent
+
+
+assign [app_id="io.github.alainm23.planify"] workspace 8
+
+assign [class="[GLgl]ava"] workspace 7
+
+assign [instance="heroic"] workspace 6
+assign [instance="steamwebhelper"] workspace 6
+assign [app_id="org.prismlauncher.PrismLauncher"] workspace 6
+
+assign [app_id="vesktop"] workspace 5
+assign [app_id="io.github.tobagin.karere"] workspace 5
+
+assign [app_id="com.usebottles.bottles"] workspace 4
+assign [class="steam_proton"] workspace 4
+assign [app_id="org.kde.kate"] workspace 4
+assign [app_id="gimp"] workspace 4
+assign [app_id="dev.storyapps.starc"] workspace 4
+
+assign [class="heroic"] workspace 3
+assign [class="steam"] workspace 3
+
+assign [app_id="librewolf"] workspace 2
+
+
+for_window [title="[GLgl]ava"] border none
+
+for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
+
+for_window [title="hyfetch"] floating enable, resize set 500 600
+
+for_window [app_id="org.keepassxc.KeePassXC"] floating enable
+
+for_window [app_id="org.gnome.font-viewer"] floating enable
